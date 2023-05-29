@@ -3,7 +3,10 @@ import shutil
 
 # Takes the input for the file path
 DriveName = input("Enter the name of your drive e.g. 'C': ")
-Name = input("Enter your windows username: ")
+# Checks to see if the user wants to use Desktop or one of the other default directories
+if DriveName == "C":
+    Name = input("Enter your windows username: ")
+
 Directory = input("Enter the directory you want to clean e.g. 'Desktop': ")
 
 def organize_files(directory):
@@ -25,7 +28,10 @@ def organize_files(directory):
         new_path = os.path.join(ext_dir, filename)
         shutil.move(file_path, new_path)
 
-file_path = (f'{DriveName}:/Users/{Name}/{Directory}')
+if DriveName == "C":
+    file_path = (f'{DriveName}:/Users/{Name}/{Directory}')
+else:
+    file_path = (f'{DriveName}:/{Directory}')
 # Runs the function
 organize_files(file_path)
 # Notifies the user it is done
